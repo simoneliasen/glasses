@@ -3,9 +3,8 @@ import requests
 import os
 import math
 
-print(sys.version)
-print(sys.executable)
-
+name = input('Your name?')
+print('Hello')
 
 def greet(who_to_greet):
     greeting = 'Hello, {}'.format(who_to_greet)
