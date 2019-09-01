@@ -9,3 +9,7 @@ def greet(who_to_greet):
 
 print(greet("John"))
 print(greet("Corey"))
+
+
+#Creating a VirtualEnviroment with  vevnv
+#python -m venv venv
