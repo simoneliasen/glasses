@@ -1,22 +1,24 @@
 import cv2
 import numpy as np
-from matplotlib import pyplot as plt #used for displaying frames
 
-#Basics: Load image in grayscale
-img = cv2.imread('testimg/portrait.jpg',cv2.IMREAD_GRAYSCALE)
+#Load cascade xml
+face_cascade = cv2.CascadeClassifier("haarcascade_frontalface_default.xml")
+eye_cascade = cv2.CascadeClassifier("haarcascade_eye.xml")
 
+#Load image
+img = cv2.imread("testimg/portrait.jpg")
 
-#Dispalying image result with matplotlib
-#plt.imshow(img, cmap = 'gray', interpolation = 'bicubic')
-#plt.xticks([]), plt.yticks([])  # to hide tick values on X and Y axis
-#plt.plot([200,300,400],[100,200,300],'c', linewidth=5)
-#plt.show()
-
-
-cv2.imshow('image',img)
-
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+for (x,y,w,h) in faces:
+    img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+    roi_gray = gray[y:y+h, x:x+w]
+    roi_color = img[y:y+h, x:x+w]
+    eyes = eye_cascade.detectMultiScale(roi_gray)
+    for (ex,ey,ew,eh) in eyes:
+        cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+cv2.imshow('img',img)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
 
-#save new image
-cv2.imwrite('watchgray.png',img)
+
