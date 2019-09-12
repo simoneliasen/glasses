@@ -6,3 +6,4 @@ Workflow:
 
 Considerations:
 1. Setup deployment from the get-go
+2. Integrate with db (preferable sqlalchemy)
