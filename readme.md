@@ -5,5 +5,4 @@ Workflow:
 4. When Ml app is done, flask serves webpage with new image
 
 Considerations:
-1. Setup deployment from the get-go
-2. Integrate with db (preferable sqlalchemy)
+1. Settle on db integration (sql-alchemy, what's avaliable on heroku?)
