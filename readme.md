@@ -1,8 +1,9 @@
-Workflow:
-1. Let user acess upload page, user uploads image
-2. Flask passes the image to the ML app.
-3. ML app runs
-4. When Ml app is done, flask serves webpage with new image
+To do:
+- Pass uploaded image to ml app, and show new image on page
+- Add advancements in face recognition and collect data
+- Setup stylesheet
+
 
 Considerations:
-1. Settle on db integration (sql-alchemy, what's avaliable on heroku?)
+- Settle on db integration (sql-alchemy, what's avaliable on heroku?)
+- Can this site be runned embed?

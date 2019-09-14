@@ -1,11 +1,24 @@
-from flask import Flask
+from flask import Flask, render_template, request
+from werkzeug import secure_filename
 app = Flask(__name__)
 
-@app.route("/")
-def greeting():
-    
-    return "<h1 style='color:green'>Hello World!</h1>"
+@app.route('/')
+def upload_file():
+   return render_template('upload.html')
+	
+@app.route('/uploader', methods = ['GET', 'POST'])
+def upload_files():
+   if request.method == 'POST':
+      f = request.files['file']
+      f.save(secure_filename(f.filename))
+      return 'file uploaded successfully'
+		
+if __name__ == '__main__':
+   app.run(debug = True)
 
+
+	
+		
 
 # @app.route("/", methods=['GET', 'POST'])
 # def process_img():
@@ -20,8 +33,6 @@ def greeting():
 
 
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
 
 
     
