@@ -1,6 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
+<p> Please only upload jpg and normal image files</p>
+<p> If the thingy crashes it's probably because it's a weird filename, try renaming for now </p>
+
       <form action = "/result" method = "POST" 
          enctype = "multipart/form-data">
          <input type = "file" name = "file" />

@@ -1,13 +1,19 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, url_for
 from werkzeug import secure_filename
-#Import cv2 for computervision and np 
+import os
 import cv2
 import numpy as np
+
+
 #Load cascade xml
 face_cascade = cv2.CascadeClassifier("haarcascade/haarcascade_frontalface_default.xml")
 eye_cascade = cv2.CascadeClassifier("haarcascade/haarcascade_eye.xml")
 
+# Specifying upload folder and varous app settings
+UPLOAD_FOLDER = 'images/'
+
 app = Flask(__name__)
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route('/')
 def upload_file():
@@ -15,9 +21,14 @@ def upload_file():
 	
 @app.route('/result', methods = ['GET', 'POST'])
 def upload_files():
+    # Uploads file (user input)
     if request.method == 'POST':
-        f = request.files['file']
-        img = cv2.imread(f"images/{f.filename}")
+        file = request.files['file']
+        filename = secure_filename(file.filename)
+        # Saves file
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        # Loads file into OpenCv enviroment via saved file
+        img = cv2.imread(f"images/{file.filename}")
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         faces = face_cascade.detectMultiScale(gray, 1.3, 5)
         for (x,y,w,h) in faces:
