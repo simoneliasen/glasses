@@ -1,36 +1,38 @@
 from flask import Flask, render_template, request
 from werkzeug import secure_filename
+#Import cv2 for computervision and np 
+import cv2
+import numpy as np
+#Load cascade xml
+face_cascade = cv2.CascadeClassifier("haarcascade/haarcascade_frontalface_default.xml")
+eye_cascade = cv2.CascadeClassifier("haarcascade/haarcascade_eye.xml")
+
 app = Flask(__name__)
 
 @app.route('/')
 def upload_file():
-   return render_template('upload.html')
+    return render_template('upload.html')
 	
-@app.route('/uploader', methods = ['GET', 'POST'])
+@app.route('/result', methods = ['GET', 'POST'])
 def upload_files():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
+    if request.method == 'POST':
+        f = request.files['file']
+        img = cv2.imread(f"images/{f.filename}")
+        gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
+        for (x,y,w,h) in faces:
+            img = cv2.rectangle(img,(x,y),(x+w,y+h),(255,0,0),2)
+            roi_gray = gray[y:y+h, x:x+w]
+            roi_color = img[y:y+h, x:x+w]
+            eyes = eye_cascade.detectMultiScale(roi_gray)
+            for (ex,ey,ew,eh) in eyes:
+                cv2.rectangle(roi_color,(ex,ey),(ex+ew,ey+eh),(0,255,0),2)
+        cv2.imwrite('static/newimage.png',img)
+        cv2.destroyAllWindows()
+        return render_template('result.html')
 		
 if __name__ == '__main__':
-   app.run(debug = True)
-
-
-	
-		
-
-# @app.route("/", methods=['GET', 'POST'])
-# def process_img():
-#     form = Upload_Pics_Form()
-#     if form.validate_on_submit():
-#         if form.pic.data:
-#             images_to_process = save_pictures(form.pic.data)
-#             processed_images = process_images(images_to_process) 
-#         return render_template('index.html', images=processed_images)
-#     elif request.method == 'GET' and not form.pic.data:
-#       return render_template('index.html', form=form)
-
+    app.run(debug = True)
 
 
 
