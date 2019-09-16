@@ -25,13 +25,14 @@
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
   <!-- <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet"> -->
 
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='magnific-popup.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-all.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='fontawesome-all.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='magnific-popup.css') }}">
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.css') }}">
-
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontawesome-all.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/fontawesome-all.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+  <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+    <META HTTP-EQUIV="EXPIRES" CONTENT="Mon, 22 Jul 2002 11:12:01 GMT">
 	<!-- Favicon  -->
     <link rel="icon" href="favicon.png">
 </head>
@@ -56,7 +57,7 @@
           <!-- Navigation -->
           <nav class="navbar navbar-expand-md navbar-dark navbar-custom fixed-top">
               <!-- Text Logo - Use this if you don't have a graphic logo -->
-              <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Leno</a> -->
+              <a class="navbar-brand logo-text page-scroll" href="index.html">Glasses.io</a> 
       
               <!-- Image Logo -->
               <!-- <a class="navbar-brand logo-image" href="index.html"><img src="{{ url_for('static', filename='logo.svg' ) }}" alt="alternative"></a>  -->
@@ -122,13 +123,12 @@
                           <div class="col-lg-6">
                               <div class="text-container">
                                   <h1>GLASSES.IO <span id="js-rotating"><br>GLASS SELECTION OF TOMMOROW</span></h1>
-                                  <p class="p-large">By leveraging machine learning, we can now find glasses that suits your face perfectly, saving you countless of trips to your cities opticians</p>
+                                  <p class="p-large">By leveraging machine learning, we can now find glasses that suit your face perfectly, saving you countless of trips to the opticians</p>
                                   
+                                  <!-- Upload form -->
                                   <form action = "/result" method = "POST" enctype = "multipart/form-data">
-                                  <input class="btn-solid-lg page-scroll"  type = "file" name = "file"/>
-                                  <!-- <i class="fab fa-apple"></i>APP STORE</a> -->
+                                <input type = "file" id = "file" name = "file" class="hidden"/>
                                   <input class="btn-solid-lg page-scroll" type = "submit"/>
-                                  <!-- <i class="fab fa-google-play"></i>PLAY STORE</a> -->
                             </form>
     
                               </div>
@@ -145,6 +145,7 @@
           <!-- end of header -->
 <!--content for pages goes  here -->
 {% block content %}{% endblock %}
+
 
 
 
