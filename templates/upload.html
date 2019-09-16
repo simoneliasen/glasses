@@ -2,18 +2,4 @@
 {% block content %}
 
 
-
-      <img src="static/upload.svg" width="300px" height="auto" alt="upload image">
-
-      <p> Please only upload jpg and normal image files</p>
-      <p> Also Avoid weird image names </p>
-      <p> if the same image keeps showing up "CTRL-SHIFT-R </p>
-      <p> To clear you cache</p>
-
-      <form action = "/result" method = "POST" 
-         enctype = "multipart/form-data">
-         <input type = "file" name = "file" />
-         <input type = "submit"/>
-      </form>
-
 {% endblock content %}
