@@ -11,3 +11,6 @@ Considerations:
 - Settle on db integration (sql-alchemy, what's avaliable on heroku?)
 - Securing each user session
 - Can this site be run embed?
+
+Example image (early stage)
+![Example image](http://korius.dk/github/file.png)
