@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% block content %}
 
-    <center><img src="{{ url_for('static', filename='newimage.png' ) }}" width="300px" heigth="auto" alt="plz work"></center>
-        <p> it worked boii </p>
+    <center><img src="{{ url_for('static', filename='newimage.png' ) }}" width="300px" heigth="auto" alt="plz work">
+    <p> if your image doesn't show up, clear your browsers cache by clicking CTRL-SHIFT-R</p>
+    <p> Other reasons that it might not be working: face at an angle, not a full face, image file starts with weird charchter, it's a non supported file</p></center>
+        
 
 {% endblock content %}
